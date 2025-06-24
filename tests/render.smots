@@ -1,6 +1,5 @@
 smonocle.graphics.begin_poly
 smonocle.graphics.add_vert ^100 ^100
 smonocle.graphics.add_vert ^100 ^150
-climb
-smonocle.graphics.add_vert $^0 ^150
+smonocle.graphics.add_vert $^1 $^2
 smonocle.graphics.end_poly

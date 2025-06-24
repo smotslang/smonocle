@@ -188,8 +188,10 @@ class Program:
         self.define_mono_tokens()
 
     def define_mono_tokens(self):
-        # graphics related tokens
+        # graphics module
         self.define_mono_graphics()
+        # input module
+        self.define_mono_input()
 
     def define_mono_graphics(self):
         # begin poly
@@ -212,10 +214,20 @@ class Program:
         token_endp = Token()
         token_endp.name = "smonocle.graphics.end_poly"
         def token_endpfunc(prgm):
-            #pygame.draw.polygon(game.screen, pygame.Color(255, 0, 0), [(100, 100), (100, 150), (150, 150)])
             pygame.draw.polygon(prgm.game.screen, prgm.graphics["color"], prgm.graphics["verts"])
         token_endp.func = token_endpfunc
         self.defs.append(token_endp)
+
+    def define_mono_input(self):
+        token_poll = Token()
+        token_poll.name = "smonocle.input.poll"
+        def token_pollfunc(prgm):
+            if pygame.key.get_pressed()[pygame.key.key_code(prgm.consumeToken())]:
+                prgm.setCurrentMemValue(1)
+            else:
+                prgm.setCurrentMemValue(0)
+        token_poll.func = token_pollfunc
+        self.defs.append(token_poll)
 
     def currentMemValue(self):
         return self.memArr[self.memPointer]

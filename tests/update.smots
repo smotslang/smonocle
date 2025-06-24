@@ -1,0 +1,27 @@
+dash ^0
+smonocle.input.poll right
+spike ^0
+    dash ^1
+    climb
+jump ^0
+
+dash ^0
+smonocle.input.poll left
+spike ^0
+    dash ^1
+    fall
+jump ^0
+
+dash ^0
+smonocle.input.poll up
+spike ^0
+    dash ^2
+    fall
+jump ^0
+
+dash ^0
+smonocle.input.poll down
+spike ^0
+    dash ^2
+    climb
+jump ^0

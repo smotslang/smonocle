@@ -4,7 +4,7 @@
 # new keywords
 
 ## input
-- smonocle.input.poll [keycode]
+- smonocle.input.poll {key}
 - smonocle.input.mousex
 - smonocle.input.mousey
 - smonocle.input.poll_mouse [mouse button]
