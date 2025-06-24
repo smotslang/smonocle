@@ -10,7 +10,7 @@ class Game:
     running = True
 
     def __init__(self):
-        self.prgm = Program("tests/init.smots")
+        self.prgm = Program("tests/init.smots", self)
         self.prgm.interpret()
 
 pygame.init()
@@ -33,6 +33,6 @@ while game.running:
 
     game.clock.tick(60)
 
-game.prgm = game.prgm.programFromSelf("tests/exit.smots")
+game.prgm = game.prgm.programFromSelf("tests/exit.smots", game)
 game.prgm.interpret()
 pygame.quit()
