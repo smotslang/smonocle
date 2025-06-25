@@ -218,7 +218,16 @@ class Program:
         token_endp.func = token_endpfunc
         self.defs.append(token_endp)
 
+        # set color
+        token_setc = Token()
+        token_setc.name = "smonocle.graphics.set_color"
+        def token_setcfunc(prgm):
+            prgm.graphics["color"] = pygame.Color(prgm.consumeNum(),prgm.consumeNum(),prgm.consumeNum(),a=prgm.consumeNum())
+        token_setc.func = token_setcfunc
+        self.defs.append(token_setc)
+
     def define_mono_input(self):
+        # poll key
         token_poll = Token()
         token_poll.name = "smonocle.input.poll"
         def token_pollfunc(prgm):
@@ -229,6 +238,32 @@ class Program:
         token_poll.func = token_pollfunc
         self.defs.append(token_poll)
 
+        # mouse pos
+        token_mx = Token()
+        token_mx.name = "smonocle.input.mousex"
+        def token_mxfunc(prgm):
+            prgm.setCurrentMemValue(pygame.mouse.get_pos()[0])
+        token_mx.func = token_mxfunc
+        self.defs.append(token_mx)
+        
+        token_my = Token()
+        token_my.name = "smonocle.input.mousey"
+        def token_myfunc(prgm):
+            prgm.setCurrentMemValue(pygame.mouse.get_pos()[1])
+        token_my.func = token_myfunc
+        self.defs.append(token_my)
+
+        # poll mouse
+        token_pollm = Token()
+        token_pollm.name = "smonocle.input.poll_mouse"
+        def token_pollmfunc(prgm):
+            if pygame.mouse.get_pressed(num_buttons=5)[prgm.parseTokenAsNumber(prgm.consumeToken())]:
+                prgm.setCurrentMemValue(1)
+            else:
+                prgm.setCurrentMemValue(0)
+        token_pollm.func = token_pollmfunc
+        self.defs.append(token_pollm)
+
     def currentMemValue(self):
         return self.memArr[self.memPointer]
     def setCurrentMemValue(self, val):
@@ -238,6 +273,8 @@ class Program:
     def consumeToken(self):
         self.pc += 1
         return self.currentToken()
+    def consumeNum(self):
+        return self.parseTokenAsNumber(self.consumeToken())
     
     def interpret(self):
         # :smearful:

@@ -1,27 +1,11 @@
-dash ^0
-smonocle.input.poll right
+dash ^1
+smonocle.input.mousex
+dash ^2
+smonocle.input.mousey
+-- check mouse down --
+dash ^3
+smonocle.graphics.set_color ^255 ^0 ^0 ^255
+smonocle.input.poll_mouse ^0
 spike ^0
-    dash ^1
-    climb
-jump ^0
-
-dash ^0
-smonocle.input.poll left
-spike ^0
-    dash ^1
-    fall
-jump ^0
-
-dash ^0
-smonocle.input.poll up
-spike ^0
-    dash ^2
-    fall
-jump ^0
-
-dash ^0
-smonocle.input.poll down
-spike ^0
-    dash ^2
-    climb
+    smonocle.graphics.set_color ^0 ^255 ^0 ^255
 jump ^0
